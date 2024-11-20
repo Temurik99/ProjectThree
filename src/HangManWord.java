@@ -24,6 +24,10 @@ public class HangManWord {
         }
     }
 
+    public String getDashedLine() {
+        return dashedLine;
+    }
+
     public String makeDashes() {
         dashedLine = "";
         for (int i = 0; i < word.length(); i++) {
@@ -42,11 +46,14 @@ public class HangManWord {
                     dashedLine = dashedLine.substring(0, j + 2) + guess + dashedLine.substring(j + 3);
                 }
             }
-            return dashedLine;
+            return dashedLine  ;
+
         } else {
-            return makeDashes();
+            return dashedLine + "\n Your guess is NOT in the word, try again ";
         }
+
     }
+
 
 
 }
