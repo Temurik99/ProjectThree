@@ -1,22 +1,18 @@
 public class HangManWord {
     String word = "";
-    String guess = "";
     String dashedLine = "";
 
     public HangManWord(String word) {
         this.word = word;
-        this.guess = guess;
     }
+
 
     public String getWord() {
         return word;
     }
 
-    public void setGuess(String guess) {
-        this.guess = guess;
-    }
 
-    public boolean checkGuess() {
+    public boolean checkGuess(String guess) {
         if (word.contains(guess)) {
             return true;
         } else {
@@ -33,12 +29,13 @@ public class HangManWord {
         for (int i = 0; i < word.length(); i++) {
             dashedLine += " ___ ";
         }
+        System.out.println();
         return dashedLine;
     }
 
-    public String checkWord() {
+    public String checkWord(String guess) {
 
-        if (checkGuess()) {
+        if (checkGuess(guess)) {
             for (int i = 0; i < word.length(); i++) {
                 String Sub = word.substring(i, i + 1);
                 int j = i * 5;
@@ -46,10 +43,10 @@ public class HangManWord {
                     dashedLine = dashedLine.substring(0, j + 2) + guess + dashedLine.substring(j + 3);
                 }
             }
-            return dashedLine  ;
+            return dashedLine;
 
         } else {
-            return dashedLine + "\n Your guess is NOT in the word, try again ";
+            return dashedLine;
         }
 
     }
