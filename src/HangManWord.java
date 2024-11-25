@@ -6,12 +6,6 @@ public class HangManWord {
         this.word = word;
     }
 
-
-    public String getWord() {
-        return word;
-    }
-
-
     public boolean checkGuess(String guess) {
         if (word.contains(guess)) {
             return true;

@@ -9,11 +9,15 @@ public class HangManStructure {
         Scanner scan = new Scanner(System.in);
 
         setWord();
+        word = word.toLowerCase();
+
         HangManWord object = new HangManWord(word);
         HangManDrawing draw = new HangManDrawing();
 
+
         int incorrectGuesses = 0;
         final int maxIncorrectGuesses = 6;
+        String wrongGuesses = "";
 
         draw.drawPick(1);
         System.out.println(object.makeDashes());
@@ -22,19 +26,34 @@ public class HangManStructure {
 
             System.out.println("Enter a guess:");
             String guess = scan.nextLine();
+            guess = guess.toLowerCase();
+
+            animate();
+
 
             if (object.checkGuess(guess)) {
                 System.out.println("Correct guess!");
             } else {
-                System.out.println("Wrong guess!");
+                System.out.println("Wrong guess! Choose another letter");
                 incorrectGuesses++;
             }
-
-            animate();
 
             if (incorrectGuesses < maxIncorrectGuesses) {
                 draw.drawPick(incorrectGuesses + 1);
                 System.out.println(object.checkWord(guess));
+            }
+
+            if (!object.checkGuess(guess)) {
+                wrongGuesses += " " + guess;
+                System.out.println("-------------");
+                System.out.println("Wrong guesses:");
+                System.out.println(wrongGuesses);
+                System.out.println("-------------");
+            } else {
+                System.out.println("-------------");
+                System.out.println("Wrong guesses:");
+                System.out.println(wrongGuesses);
+                System.out.println("-------------");
             }
         }
 
@@ -75,6 +94,8 @@ public class HangManStructure {
             System.out.println();
         }
     }
+
+
 
     /* bring down the correct or not correct to the new output/ add incorrect letters shown each time,
      add option to guess full word, if they think they got it, also if they get the letter correct,
