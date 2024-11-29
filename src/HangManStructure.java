@@ -9,7 +9,6 @@ public class HangManStructure {
         Scanner scan = new Scanner(System.in);
 
         setWord();
-        word = word.toLowerCase();
 
         HangManWord object = new HangManWord(word);
         HangManDrawing draw = new HangManDrawing();
@@ -24,14 +23,19 @@ public class HangManStructure {
 
         while (incorrectGuesses < maxIncorrectGuesses  && object.getDashedLine().contains("___")) {
 
-            System.out.println("Enter a guess:");
+            System.out.print("Enter a guess: ");
             String guess = scan.nextLine();
             guess = guess.toLowerCase();
 
             animate();
 
 
-            if (object.checkGuess(guess)) {
+            if (object.isWord(guess)) {
+                draw.drawPick(8);
+                System.out.println();
+                System.out.println(object.checkWord(guess));
+                break;
+            } else if (object.checkGuess(guess)) {
                 System.out.println("Correct guess!");
             } else {
                 System.out.println("Wrong guess! Choose another letter");
@@ -62,6 +66,10 @@ public class HangManStructure {
             draw.drawPick(maxIncorrectGuesses + 1);
             System.out.println("Game over! The word was: " + word);
         } else {
+            animate();
+            draw.drawPick(8);
+            System.out.println();
+            System.out.println(object.checkWord(word));
             System.out.println("Congratulations! You guessed the word: " + word);
         }
 
