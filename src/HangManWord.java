@@ -6,6 +6,10 @@ public class HangManWord {
         this.word = word;
     }
 
+    public HangManWord() {
+        word = "";
+    }
+
     public boolean checkGuess(String guess) {
         if (word.contains(guess) || word.contains(guess.toUpperCase())) {
             return true;
@@ -22,11 +26,11 @@ public class HangManWord {
         }
     }
 
-    public String getDashedLine() {
+    public String getDashedLine() {  // this method gets the updated dashed line each time and doesn't change the dashed line in any way.
         return dashedLine;
     }
 
-    public String makeDashes() {
+    public String makeDashes() {   // analyzes the word and makes dashes based on how many letters are in the word, method only used once to set dashes
         dashedLine = "";
         for (int i = 0; i < word.length(); i++) {
             dashedLine += " ___ ";
@@ -35,8 +39,7 @@ public class HangManWord {
         return dashedLine;
     }
 
-    public String checkWord(String guess) {
-
+    public String checkWord(String guess) {  // the main and probably most important method that updates the dashed line based on the letter input the player gives
         if (isWord(guess)) {
             for (int i = 0; i < word.length(); i++) {
                 String Sub = word.substring(i, i + 1);
@@ -58,11 +61,9 @@ public class HangManWord {
                 }
             }
             return dashedLine;
-
         } else {
             return dashedLine;
         }
-
     }
 }
 

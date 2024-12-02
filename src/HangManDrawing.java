@@ -1,8 +1,6 @@
-import java.lang.reflect.Method;
-
 public class HangManDrawing {
 
-    public String drawOne() {
+    public String drawOne() {   //  I've drawn 8 different drawings to accommodate 8 different phases of the hangman
         return "____\n" +
                 "|/   |               |----------------|\n" +
                 "|                    | Enter The Word |\n" +
@@ -11,7 +9,6 @@ public class HangManDrawing {
                 "|                    |----------------|\n" +
                 "|_____";
     }
-
 
     public String drawTwo() {
         return "____\n" +
@@ -23,7 +20,6 @@ public class HangManDrawing {
                 "|_____";
     }
 
-
     public String drawThree() {
         return " ____\n" +
                 "|/   |              |----------------|\n" +
@@ -33,7 +29,6 @@ public class HangManDrawing {
                 "|                   |----------------|\n" +
                 "|_____";
     }
-
 
     public String drawFour() {
         return "____\n" +
@@ -45,7 +40,6 @@ public class HangManDrawing {
                 "|_____";
     }
 
-
     public String drawFive() {
         return " ____\n" +
                 "|/   |              |----------------|\n" +
@@ -56,7 +50,6 @@ public class HangManDrawing {
                 "|_____";
     }
 
-
     public String drawSix() {
         return " ____\n" +
                 "|/   |              |----------------|\n" +
@@ -66,7 +59,6 @@ public class HangManDrawing {
                 "|   /               |----------------|\n" +
                 "|_____";
     }
-
 
     public String drawSeven() {
         return  " ____\n" +
@@ -88,9 +80,7 @@ public class HangManDrawing {
                 "|_____      / \\";
     }
 
-
-
-    public void drawPick(int step) {
+    public void drawPick(int step) {  // Method that uses the switch command to call the necessary method based on the parameter value, important for switching through the phases of the HangMan
         switch (step) {
             case 1 -> System.out.println(drawOne());
             case 2 -> System.out.println(drawTwo());
@@ -103,6 +93,4 @@ public class HangManDrawing {
             default -> System.out.println("Invalid step number.");
         }
     }
-
-
 }

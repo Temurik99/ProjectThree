@@ -1,4 +1,4 @@
-import javax.swing.*;
+import javax.swing.*;  // added tool for password protection (nobody sees the word)
 import java.util.Scanner;
 
 public class HangManStructure {
@@ -10,25 +10,23 @@ public class HangManStructure {
 
         setWord();
 
-        HangManWord object = new HangManWord(word);
+        HangManWord object = new HangManWord(word); // creation of the two main classes needed to form the HangMan outputs
         HangManDrawing draw = new HangManDrawing();
-
 
         int incorrectGuesses = 0;
         final int maxIncorrectGuesses = 6;
         String wrongGuesses = "";
 
-        draw.drawPick(1);
+        draw.drawPick(1); //  uses my method in the drawing class that picks the drawing that needs to be used
         System.out.println(object.makeDashes());
 
-        while (incorrectGuesses < maxIncorrectGuesses  && object.getDashedLine().contains("___")) {
+        while (incorrectGuesses < maxIncorrectGuesses  && object.getDashedLine().contains("___")) { // runs the program whilst the word isn't solved or Hangman isn't fully drawn.
 
             System.out.print("Enter a guess: ");
             String guess = scan.nextLine();
             guess = guess.toLowerCase();
 
             animate();
-
 
             if (object.isWord(guess)) {
                 draw.drawPick(8);
@@ -47,7 +45,7 @@ public class HangManStructure {
                 System.out.println(object.checkWord(guess));
             }
 
-            if (!object.checkGuess(guess)) {
+            if (!object.checkGuess(guess)) {     // Displays wrong guesses on each turn, used to keep track and not make wrong guess twice
                 wrongGuesses += " " + guess;
                 System.out.println("-------------");
                 System.out.println("Wrong guesses:");
@@ -70,12 +68,16 @@ public class HangManStructure {
             draw.drawPick(8);
             System.out.println();
             System.out.println(object.checkWord(word));
-            System.out.println("Congratulations! You guessed the word: " + word);
+            int random = (int) (Math.random() * 2) + 1;
+            if (random == 1) {
+                System.out.println("Congratulations! You guessed the word: " + word);
+            } else {
+                System.out.println("Wow great Job! You guessed the word: " + word);
+            }
         }
-
     }
 
-    public void setWord() {
+    public void setWord() {   // entire method used to create password protected entry
 
         JPasswordField passwordField = new JPasswordField();
         Object[] options = {"OK"};
@@ -93,20 +95,17 @@ public class HangManStructure {
         if (option == 0) {
             word = new String(passwordField.getPassword());
         }
-
     }
 
-
-    public void animate() {
+    public void animate() { // Creative way to animate the transitioning of frames into a new output
         for (int i = 0; i < 12; i++) {
             System.out.println();
         }
     }
 
-
-
-    /* bring down the correct or not correct to the new output/ add incorrect letters shown each time,
-     add option to guess full word, if they think they got it, also if they get the letter correct,
-     say there is/are x amount of the letter towards the end or at the front or in the middle of the word */
-
+    public void animate(int num) {
+        for (int i = 0; i < num; i++) {
+            System.out.println();
+        }
+    }
 }
